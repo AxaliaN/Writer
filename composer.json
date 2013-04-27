@@ -1,0 +1,26 @@
+{
+    "name": "ts/writer",
+    "description": "Extensible string and file writing library.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Timo Schäfer",
+            "email": "timo.a.schaefer@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/event-dispatcher": "2.2.*",
+        "symfony/yaml": "2.2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "TS\\Writer\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
