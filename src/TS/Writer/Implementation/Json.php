@@ -48,7 +48,7 @@ class Json extends FileWriter
     {
         parent::__construct($eventDispatcher);
 
-        if (version_compare(PHP_VERSION, '5.4.0') == -1) {
+        if (version_compare(PHP_VERSION, '5.4.0', '<')) {
             $this->compatMode = true;
 
             define('JSON_UNESCAPED_SLASHES', 64);
@@ -68,13 +68,13 @@ class Json extends FileWriter
      */
     protected function compatEncode($data, $options = 0, $indent = '')
     {
-        $obj = ($options & \JSON_FORCE_OBJECT);
+        $obj = ($options & JSON_FORCE_OBJECT);
 
-        list($space, $tab, $nl) = ($options & \JSON_PRETTY_PRINT)
+        list($space, $tab, $nl) = ($options & JSON_PRETTY_PRINT)
             ? array(' ', str_repeat(' ', $this->indentation) . $indent, $this->lineBreak)
             : array('', '', '');
 
-        if ($options & \JSON_NUMERIC_CHECK and is_string($data) and is_numeric($data)) {
+        if ($options & JSON_NUMERIC_CHECK and is_string($data) and is_numeric($data)) {
             $data = (strpos($data, '.') || strpos($data, 'e') ? (float) $data : (int) $data);
         }
 
@@ -107,17 +107,17 @@ class Json extends FileWriter
                 "\n"   => "\\n",
                 "\r"   => "\\r",
                 "\t"   => "\\t",
-                '/'    => $options & \JSON_UNESCAPED_SLASHES ? '/'       : "\\/",
-                '<'    => $options & \JSON_HEX_TAG           ? "\\u003C" : '<',
-                '>'    => $options & \JSON_HEX_TAG           ? "\\u003E" : '>',
-                "'"    => $options & \JSON_HEX_APOS          ? "\\u0027" : "'",
-                '"'    => $options & \JSON_HEX_QUOT          ? "\\u0022" : "\"",
-                '&'    => $options & \JSON_HEX_AMP           ? "\\u0026" : '&',
+                '/'    => $options & JSON_UNESCAPED_SLASHES ? '/'       : "\\/",
+                '<'    => $options & JSON_HEX_TAG           ? "\\u003C" : '<',
+                '>'    => $options & JSON_HEX_TAG           ? "\\u003E" : '>',
+                "'"    => $options & JSON_HEX_APOS          ? "\\u0027" : "'",
+                '"'    => $options & JSON_HEX_QUOT          ? "\\u0022" : "\"",
+                '&'    => $options & JSON_HEX_AMP           ? "\\u0026" : '&',
             );
 
             $data = strtr($data, $rewrite);
 
-            if (function_exists('iconv') && ($options & \JSON_UNESCAPED_UNICODE) == 0) {
+            if (function_exists('iconv') && ($options & JSON_UNESCAPED_UNICODE) == 0) {
                 $callback = function($value) {
                     return current(unpack('H*', iconv('UTF-8', 'UCS-2BE', $value)));
                 };
@@ -221,7 +221,7 @@ class Json extends FileWriter
      */
     public function setOption($option, $enable = true)
     {
-        if ($option == \JSON_PRETTY_PRINT) {
+        if ($option == JSON_PRETTY_PRINT) {
             $this->prettyPrint = $enable;
         }
 
