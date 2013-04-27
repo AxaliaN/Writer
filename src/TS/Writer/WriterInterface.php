@@ -22,7 +22,7 @@ interface WriterInterface
     /**
      * Sets the data array to be written.
      *
-     * @param  array $data
+     * @param  array  $data
      * @return static
      */
     public function setData(array $data);
