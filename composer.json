@@ -17,7 +17,7 @@
         "psr-0": {
             "TS\\Writer\\": "src/"
         },
-        "files": [ "json_constants.php" ]
+        "files": [ "json_compat.php" ]
     },
     "extra": {
         "branch-alias": {

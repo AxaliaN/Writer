@@ -2,9 +2,7 @@
 
 namespace TS\Writer\Implementation;
 
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use TS\Writer\FileWriter;
-use TS\Writer\Exception\DumpingException;
 
 /**
  * Json
@@ -42,102 +40,6 @@ class Json extends FileWriter
     private $prettyPrint = true;
 
     /**
-     * @param EventDispatcherInterface $eventDispatcher
-     */
-    public function __construct(EventDispatcherInterface $eventDispatcher)
-    {
-        parent::__construct($eventDispatcher);
-
-        $this->compatMode = (bool) version_compare(PHP_VERSION, '5.4.0', '<');
-    }
-
-    /**
-     * Compability json_encode method for PHP versions < 5.4. Taken from upgrade.php.
-     *
-     * @param  array            $data
-     * @param  int              $options
-     * @param  string           $indent
-     * @return string
-     * @throws DumpingException
-     */
-    protected function compatEncode($data, $options = 0, $indent = '')
-    {
-        $obj = ($options & JSON_FORCE_OBJECT);
-
-        list($space, $tab, $nl) = ($options & JSON_PRETTY_PRINT)
-            ? array(' ', str_repeat(' ', $this->indentation) . $indent, $this->lineBreak)
-            : array('', '', '');
-
-        if ($options & JSON_NUMERIC_CHECK and is_string($data) and is_numeric($data)) {
-            $data = (strpos($data, '.') || strpos($data, 'e') ? (float) $data : (int) $data);
-        }
-
-        if (is_array($data) || ($obj = is_object($data))) {
-            if ( ! $obj) {
-                $keys = array_keys((array) $data);
-                $obj  = ! ($keys == array_keys($keys));
-            }
-
-            $empty = 0;
-            $json  = '';
-
-            foreach ((array) $data as $key => $value) {
-                $json .= ($empty++ ? ',' . $nl : '')
-                    . $tab . ($obj ? ($this->compatEncode($key, $options, $tab) . ':' . $space) : '')
-                    . ($this->compatEncode($value, $options, $tab));
-            }
-
-            $json = $obj ? '{' . $nl . $json . $nl . $indent . '}' : '[' . $nl . $json . $nl . $indent . ']';
-        } elseif (is_string($data)) {
-            if ( ! utf8_decode($data)) {
-                throw new DumpingException('Invalid UTF-8 encoding in string [' . $data . '].');
-            }
-
-            $rewrite = array(
-                "\\"   => "\\\\",
-                "\""   => "\\\"",
-                "\010" => "\\b",
-                "\f"   => "\\f",
-                "\n"   => "\\n",
-                "\r"   => "\\r",
-                "\t"   => "\\t",
-                '/'    => $options & JSON_UNESCAPED_SLASHES ? '/'       : "\\/",
-                '<'    => $options & JSON_HEX_TAG           ? "\\u003C" : '<',
-                '>'    => $options & JSON_HEX_TAG           ? "\\u003E" : '>',
-                "'"    => $options & JSON_HEX_APOS          ? "\\u0027" : "'",
-                '"'    => $options & JSON_HEX_QUOT          ? "\\u0022" : "\"",
-                '&'    => $options & JSON_HEX_AMP           ? "\\u0026" : '&',
-            );
-
-            $data = strtr($data, $rewrite);
-
-            if (function_exists('iconv') && ($options & JSON_UNESCAPED_UNICODE) == 0) {
-                $callback = function($value) {
-                    return current(unpack('H*', iconv('UTF-8', 'UCS-2BE', $value)));
-                };
-
-                $data = preg_replace_callback("/[^\\x{0000}-\\x{007F}]/u", $callback, $data);
-            }
-
-            if ($options & 0x8000) {
-                $data = preg_replace("/[\000-\037]/", '', $data);
-            }
-
-            $json = '"' . $data . '"';
-        } elseif (is_bool($data)) {
-            $json = $data ? 'true' : 'false';
-        } elseif ($data === null) {
-            $json = 'null';
-        } elseif (is_int($data) || is_float($data)) {
-            $json = (string) $data;
-        } else {
-            throw new DumpingException('Type ' . gettype($data) . " can't be converted to json.");
-        }
-
-        return $json;
-    }
-
-    /**
      * Returns the options for json_encode, adding JSON_PRETTY_PRINT if pretty printing is enabled.
      *
      * @return int
@@ -160,11 +62,7 @@ class Json extends FileWriter
      */
     public function dumpData()
     {
-        if ($this->compatMode === false) {
-            return json_encode($this->data, $this->options());
-        }
-
-        return $this->compatEncode($this->data, $this->options());
+        return json_encode($this->data, $this->options());
     }
 
     /**
