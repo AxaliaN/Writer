@@ -16,7 +16,8 @@
     "autoload": {
         "psr-0": {
             "TS\\Writer\\": "src/"
-        }
+        },
+        "files": [ "json_constants.php" ]
     },
     "extra": {
         "branch-alias": {
