@@ -73,16 +73,4 @@ TXT;
         $this->assertSame($expected, $this->writer->dumpData());
         $this->assertSame($expected, file_get_contents($this->tmpDir . 'textFile.txt'));
     }
-
-    /**
-     * @expectedException \TS\Writer\Exception\FilesystemException
-     */
-    public function testWriteAllFilesystemException()
-    {
-        $handle = fopen($this->tmpDir . 'textFile.txt', 'w+');
-
-        if (flock($handle, LOCK_EX)) {
-            $this->writer->writeAll();
-        }
-    }
 }

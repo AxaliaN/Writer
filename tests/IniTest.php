@@ -89,18 +89,6 @@ class IniTest extends BaseTest
         $this->writer->writeAll();
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\FilesystemException
-     */
-    public function testWriteAllFilesystemException()
-    {
-        $handle = fopen($this->tmpDir . 'iniFile.ini', 'w+');
-
-        if (flock($handle, LOCK_EX)) {
-            $this->writer->writeAll();
-        }
-    }
-
     public function testWriteAll()
     {
         $this->assertTrue($this->writer->writeAll());
