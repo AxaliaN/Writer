@@ -80,8 +80,9 @@ TXT;
     public function testWriteAllFilesystemException()
     {
         $handle = fopen($this->tmpDir . 'textFile.txt', 'w+');
-        flock($handle, LOCK_EX);
 
-        $this->writer->writeAll();
+        if (flock($handle, LOCK_EX)) {
+            $this->writer->writeAll();
+        }
     }
 }

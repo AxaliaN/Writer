@@ -95,9 +95,10 @@ class IniTest extends BaseTest
     public function testWriteAllFilesystemException()
     {
         $handle = fopen($this->tmpDir . 'iniFile.ini', 'w+');
-        flock($handle, LOCK_EX);
 
-        $this->writer->writeAll();
+        if (flock($handle, LOCK_EX)) {
+            $this->writer->writeAll();
+        }
     }
 
     public function testWriteAll()
