@@ -5,8 +5,8 @@ namespace TS\Writer\Implementation;
 use DOMDocument;
 use DOMElement;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use TS\Writer\FileWriter;
 use TS\Writer\Exception\DumpingException;
+use TS\Writer\FileWriter;
 
 /**
  * Xml
@@ -71,7 +71,7 @@ class Xml extends FileWriter
             if (isset($data['@attributes'])) {
                 foreach ($data['@attributes'] as $key => $value) {
                     // Keys have to start with a letter and my only contain certain symbols
-                    if ( ! $this->validateTag($key)) {
+                    if (!$this->validateTag($key)) {
                         throw new DumpingException('attribute');
                     }
 
@@ -104,7 +104,7 @@ class Xml extends FileWriter
         if (is_array($data)) {
             // Recurse to get the node for that key
             foreach ($data as $key => $value) {
-                if ( ! $this->validateTag($key)) {
+                if (!$this->validateTag($key)) {
                     throw new DumpingException('tag');
                 }
 
@@ -114,7 +114,7 @@ class Xml extends FileWriter
                     foreach ($value as $v) {
                         $node->appendChild($this->convert($key, $v));
                     }
-                // Only one node of a kind
+                    // Only one node of a kind
                 } else {
                     $node->appendChild($this->convert($key, $value));
                 }
@@ -125,7 +125,7 @@ class Xml extends FileWriter
 
         // after we are done with all the keys in the array (if it is one)
         // we check if it has any text value, if yes, append it.
-        if( ! is_array($data)) {
+        if (!is_array($data)) {
             $childNode = @$this->xml->createTextNode($this->convertBool($data));
 
             if (!$childNode) {
@@ -146,7 +146,7 @@ class Xml extends FileWriter
      */
     private function convertBool($value)
     {
-        if ( ! is_bool($value)) {
+        if (!is_bool($value)) {
             return $value;
         }
 
@@ -160,7 +160,7 @@ class Xml extends FileWriter
      */
     private function initializeXml()
     {
-        $this->xml = new DOMDocument('1.0', $this->encoding);
+        $this->xml               = new DOMDocument('1.0', $this->encoding);
         $this->xml->formatOutput = $this->formatOutput;
 
         return $this->xml;

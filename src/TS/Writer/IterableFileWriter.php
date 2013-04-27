@@ -23,11 +23,6 @@ abstract class IterableFileWriter extends FileWriter implements IterableWriterIn
     protected $lastLine;
 
     /**
-     * @var string
-     */
-    protected $lineEnding = "\n";
-
-    /**
      * @var int
      */
     protected $mode = \FILE_APPEND;
@@ -114,19 +109,6 @@ abstract class IterableFileWriter extends FileWriter implements IterableWriterIn
     }
 
     /**
-     * Sets the line ending character.
-     *
-     * @param  string $lineEnding
-     * @return static
-     */
-    public function setLineEnding($lineEnding)
-    {
-        $this->lineEnding = $lineEnding;
-
-        return $this;
-    }
-
-    /**
      * Iterator::valid()
      *
      * @return bool
@@ -145,7 +127,7 @@ abstract class IterableFileWriter extends FileWriter implements IterableWriterIn
      */
     public function write()
     {
-        if ( ! $this->isFileSet()) {
+        if (!$this->isFileSet()) {
             throw new FileNotSetException;
         }
 
@@ -175,7 +157,7 @@ abstract class IterableFileWriter extends FileWriter implements IterableWriterIn
      */
     public function writeAll()
     {
-        if ( ! $this->isFileSet()) {
+        if (!$this->isFileSet()) {
             throw new FileNotSetException;
         }
 

@@ -76,7 +76,7 @@ class FileWriterFactory
             ));
         }
 
-        if(!isset($this->registry[$class])) {
+        if (!isset($this->registry[$class])) {
             $this->registry[$class] = $instance;
         }
 

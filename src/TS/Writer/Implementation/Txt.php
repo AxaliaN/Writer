@@ -22,7 +22,7 @@ class Txt extends IterableFileWriter
      */
     protected function writeLine($data)
     {
-        return (bool) @file_put_contents($this->file, $data . $this->lineEnding, $this->mode);
+        return (bool)@file_put_contents($this->file, $data . $this->lineEnding, $this->mode);
     }
 
     /**
@@ -35,7 +35,7 @@ class Txt extends IterableFileWriter
         $dump = '';
 
         foreach ($this->data as $value) {
-            $dump .= (string) $value . $this->lineEnding;
+            $dump .= (string)$value . $this->lineEnding;
         }
 
         return $dump;

@@ -118,9 +118,9 @@ class Json extends FileWriter
         }
 
         if ($enable === true) {
-            $this->options |= (int) $option;
+            $this->options |= (int)$option;
         } else {
-            $this->options &= (int) ~$option;
+            $this->options &= (int)~$option;
         }
 
         return $this;

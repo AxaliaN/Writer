@@ -2,8 +2,8 @@
 
 namespace TS\Writer\Implementation;
 
-use TS\Writer\FileWriter;
 use TS\Writer\Exception\DumpingException;
+use TS\Writer\FileWriter;
 
 /**
  * Ini
@@ -19,11 +19,6 @@ class Ini extends FileWriter
      * @var bool
      */
     protected $createSections = false;
-
-    /**
-     * @var string
-     */
-    protected $lineBreak = "\n";
 
     /**
      * Encode the data array to a .ini compatible string.
@@ -48,7 +43,7 @@ class Ini extends FileWriter
         } elseif (is_bool($data)) {
             $ini = ($data === true ? 'On' : 'Off');
         } elseif (is_int($data) || is_float($data)) {
-            $ini = (string) $data;
+            $ini = (string)$data;
         } elseif ($data === null) {
             $ini = '';
         } else {
@@ -74,10 +69,10 @@ class Ini extends FileWriter
             foreach ($data as $key => $value) {
                 if (is_array($value)) {
                     foreach ($value as $subvalue) {
-                        $ini .= $key . '[] = ' . $this->encodeData($subvalue, $stackLevel) . $this->lineBreak;
+                        $ini .= $key . '[] = ' . $this->encodeData($subvalue, $stackLevel) . $this->lineEnding;
                     }
                 } else {
-                    $ini .= $key . ' = ' . $this->encodeData($value, $stackLevel) . $this->lineBreak;
+                    $ini .= $key . ' = ' . $this->encodeData($value, $stackLevel) . $this->lineEnding;
                 }
             }
         } else {
@@ -101,26 +96,26 @@ class Ini extends FileWriter
 
         if ($stackLevel++ <= 1) {
             foreach ($data as $section => $values) {
-                if ( ! is_string($section) or ! is_array($values)) {
+                if (!is_string($section) or !is_array($values)) {
                     throw new DumpingException(
                         "Sectioned ini data must have the following \$data format:\n
                         \$data = array(/* string */ \$section => array(/* string */ \$key => \$value, ...))."
                     );
                 }
 
-                $ini .= '[' . $section . ']' . $this->lineBreak;
+                $ini .= '[' . $section . ']' . $this->lineEnding;
 
                 foreach ($values as $key => $value) {
-                    if ( ! is_string($key)) {
+                    if (!is_string($key)) {
                         throw new DumpingException('$key must be a string.');
                     }
 
                     if (is_array($value)) {
                         foreach ($value as $subValue) {
-                            $ini .= $key . '[] = ' . $this->encodeData($subValue, ++$stackLevel) . $this->lineBreak;
+                            $ini .= $key . '[] = ' . $this->encodeData($subValue, ++$stackLevel) . $this->lineEnding;
                         }
                     } else {
-                        $ini .= $key . ' = ' . $this->encodeData($value, ++$stackLevel) . $this->lineBreak;
+                        $ini .= $key . ' = ' . $this->encodeData($value, ++$stackLevel) . $this->lineEnding;
                     }
                 }
             }
@@ -152,19 +147,6 @@ class Ini extends FileWriter
     public function dumpData()
     {
         return $this->encodeData($this->data);
-    }
-
-    /**
-     * Sets the line break character to use when dumping json.
-     *
-     * @param  string $lineBreak
-     * @return static
-     */
-    public function setLineBreak($lineBreak = "\n")
-    {
-        $this->lineBreak = $lineBreak;
-
-        return $this;
     }
 
     /**

@@ -62,7 +62,7 @@ class Csv extends IterableFileWriter
         $handle = $this->getHandle();
 
         flock($handle, \LOCK_EX);
-        $success = (bool) @fputcsv($handle, $data, $this->delimiter, $this->enclosure);
+        $success = (bool)@fputcsv($handle, $data, $this->delimiter, $this->enclosure);
         flock($handle, \LOCK_UN);
 
         return $success;
