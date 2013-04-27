@@ -21,6 +21,7 @@
         <whitelist>
             <directory>./</directory>
             <exclude>
+                <directory>./src/TS/Writer/Provider</directory>
                 <directory>./vendor</directory>
                 <directory>./tests</directory>
             </exclude>

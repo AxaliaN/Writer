@@ -1,6 +1,6 @@
 {
     "name": "ts/writer",
-    "description": "Extensible string and file writing library.",
+    "description": "Extensible data output library.",
     "license": "MIT",
     "authors": [
         {
