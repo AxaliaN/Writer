@@ -2,6 +2,7 @@
 
 namespace TS\Writer;
 
+use TS\Writer\Event\IterationEvent;
 use TS\Writer\Event\WriterEvent;
 
 /**
@@ -22,14 +23,13 @@ abstract class IterableWriter extends AbstractWriter implements IterableWriterIn
     /**
      * Morphs the data, so that we can hook into and validate each subset of our data array.
      *
-     * @param  array $lastLine
-     * @return array
+     * @return mixed
      */
-    protected function morphData(array $lastLine)
+    protected function morphData()
     {
-        $this->setLastLine($lastLine);
+        $this->setLastLine($this->current());
 
-        $this->eventDispatcher->dispatch(WriterEvents::BEFORE_WRITE, new WriterEvent($this));
+        $this->eventDispatcher->dispatch(WriterEvents::BEFORE_WRITE, new IterationEvent($this));
 
         return $this->getLastLine();
     }

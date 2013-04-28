@@ -24,7 +24,7 @@ final class FactoryException extends RuntimeException
     public function __construct($type, Exception $previous = null)
     {
         parent::__construct(
-            sprintf("The FileWriterFactory couldn't create a machting Writer for type [%s].", $type),
+            sprintf("The FileWriterFactory couldn't create a matching Writer for type [%s].", $type),
             0,
             $previous
         );

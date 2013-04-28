@@ -22,6 +22,11 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
     protected $file;
 
     /**
+     * @var string
+     */
+    protected $lineEnding = "\n";
+
+    /**
      * @var int
      */
     protected $mode = 0;
@@ -49,7 +54,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
 
         // Wrong extension, set the correct one - the one with the highest prevalence
         // set in our supportedTypes() method.
-        if ( ! isset($pathinfo['extension']) || ! $this->supports($pathinfo['extension'])) {
+        if (!isset($pathinfo['extension']) || !$this->supports($pathinfo['extension'])) {
             $types        = $this->supportedTypes();
             $newExtension = reset($types);
             $fileName     = $pathinfo['dirname'] . '/' . $pathinfo['filename'] . '.' . $newExtension;
@@ -68,7 +73,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
         $filename = pathinfo($this->file, PATHINFO_FILENAME);
         $ext      = pathinfo($this->file, PATHINFO_EXTENSION);
 
-        return ($this->isFileSet() ? $filename . (!empty($ext) ? '.' . $ext : '')  : null);
+        return ($this->isFileSet() ? $filename . (!empty($ext) ? '.' . $ext : '') : null);
     }
 
     /**
@@ -99,7 +104,20 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
      */
     public function setFileAccessMode($mode = 0)
     {
-        $this->mode = (int) $mode;
+        $this->mode = (int)$mode;
+
+        return $this;
+    }
+
+    /**
+     * Sets the line ending character.
+     *
+     * @param  string $lineEnding
+     * @return static
+     */
+    public function setLineEnding($lineEnding)
+    {
+        $this->lineEnding = $lineEnding;
 
         return $this;
     }
@@ -116,7 +134,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
     {
         $tarDir = pathinfo($filePath, PATHINFO_DIRNAME);
 
-        if ( ! file_exists($tarDir)) {
+        if (!file_exists($tarDir)) {
             if ($createDir === false) {
                 throw new FilesystemException(
                     sprintf('Path [%s] does not exist.', $tarDir)
@@ -131,7 +149,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
             }
         }
 
-        if ( ! is_writable($tarDir)) {
+        if (!is_writable($tarDir)) {
             throw new FilesystemException(
                 sprintf('Path [%s] is not writable.', $tarDir)
             );
@@ -163,7 +181,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
      */
     public function writeAll()
     {
-        if ( ! $this->isFileSet()) {
+        if (!$this->isFileSet()) {
             throw new FileNotSetException;
         }
 
@@ -172,7 +190,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
         $data = $this->dumpData();
 
         // Save file
-        $success = (bool) @file_put_contents($this->file, $data, $this->mode);
+        $success = (bool)@file_put_contents($this->file, $data, $this->mode);
 
         if ($success === false) {
             throw new FilesystemException(

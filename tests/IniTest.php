@@ -57,8 +57,14 @@ class IniTest extends BaseTest
 
     public function testIniAccessors()
     {
-        $this->writer->setLineBreak("\r\n");
-        $this->assertContains("\r\n", $this->writer->dumpData());
+        $this->writer->setLineEnding("\r\n");
+
+        $reflection = new ReflectionObject($this->writer);
+
+        $lineEnding = $reflection->getProperty('lineEnding');
+        $lineEnding->setAccessible(true);
+
+        $this->assertSame("\r\n", $lineEnding->getValue($this->writer));
     }
 
     /**

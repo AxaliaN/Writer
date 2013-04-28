@@ -39,22 +39,16 @@ class JsonTest extends BaseTest
 
     public function testJsonAccessors()
     {
-        $this->writer->setLineBreak("\r\n");
-        $this->writer->setIndentation(2);
+        $this->writer->setLineEnding("\r\n");
         $this->writer->setOption(JSON_PRETTY_PRINT);
         $this->writer->setPrettyPrint(false);
 
         $reflection = new ReflectionObject($this->writer);
 
-        $lineBreak = $reflection->getProperty('lineBreak');
-        $lineBreak->setAccessible(true);
+        $lineEnding = $reflection->getProperty('lineEnding');
+        $lineEnding->setAccessible(true);
 
-        $this->assertSame("\r\n", $lineBreak->getValue($this->writer));
-
-        $indentation = $reflection->getProperty('indentation');
-        $indentation->setAccessible(true);
-
-        $this->assertSame(2, $indentation->getValue($this->writer));
+        $this->assertSame("\r\n", $lineEnding->getValue($this->writer));
 
         $prettyPrint = $reflection->getProperty('prettyPrint');
         $prettyPrint->setAccessible(true);
@@ -76,31 +70,6 @@ class JsonTest extends BaseTest
         $this->assertTrue($this->writer->writeAll());
 
         $expected = json_encode($this->getData(), JSON_PRETTY_PRINT);
-
-        $this->assertSame($expected, $this->writer->dumpData());
-        $this->assertSame($expected, file_get_contents($this->tmpDir . 'jsonFile.json'));
-    }
-
-    public function testWriteAllCompatEncode()
-    {
-        $this->writer->setCompabilityMode(true);
-
-        $this->assertTrue($this->writer->writeAll());
-
-        $expected = json_encode($this->getData(), JSON_PRETTY_PRINT);
-
-        $this->assertSame($expected, $this->writer->dumpData());
-        $this->assertSame($expected, file_get_contents($this->tmpDir . 'jsonFile.json'));
-    }
-
-    public function testWriteAllCompatEncodeNumericCheck()
-    {
-        $this->writer->setCompabilityMode(true);
-        $this->writer->setOption(JSON_NUMERIC_CHECK);
-
-        $this->assertTrue($this->writer->writeAll());
-
-        $expected = json_encode($this->getData(), JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK);
 
         $this->assertSame($expected, $this->writer->dumpData());
         $this->assertSame($expected, file_get_contents($this->tmpDir . 'jsonFile.json'));

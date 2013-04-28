@@ -2,8 +2,8 @@
 
 namespace TS\Writer;
 
-use TS\Writer\Event\WriterEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use TS\Writer\Event\WriterEvent;
 
 /**
  * AbstractWriter

@@ -61,9 +61,9 @@ class Csv extends IterableFileWriter
     {
         $handle = $this->getHandle();
 
-        flock($handle, \LOCK_EX);
-        $success = (bool) @fputcsv($handle, $data, $this->delimiter, $this->enclosure);
-        flock($handle, \LOCK_UN);
+        flock($handle, LOCK_EX);
+        $success = (bool)@fputcsv($handle, $data, $this->delimiter, $this->enclosure);
+        flock($handle, LOCK_UN);
 
         return $success;
     }
@@ -92,9 +92,9 @@ class Csv extends IterableFileWriter
         $handle = fopen('php://temp', 'w+');
 
         for ($this->rewind(); $this->valid(); $this->next()) {
-            flock($handle, \LOCK_EX);
+            flock($handle, LOCK_EX);
             fputcsv($handle, $this->current(), $this->delimiter, $this->enclosure);
-            flock($handle, \LOCK_UN);
+            flock($handle, LOCK_UN);
         }
 
         $dump = '';
@@ -110,6 +110,12 @@ class Csv extends IterableFileWriter
         return $dump;
     }
 
+    /**
+     * Sets the delimiting character.
+     *
+     * @param  string $delimiter
+     * @return static
+     */
     public function setDelimiter($delimiter)
     {
         $this->delimiter = $delimiter;
@@ -117,6 +123,12 @@ class Csv extends IterableFileWriter
         return $this;
     }
 
+    /**
+     * Sets the enclosing character.
+     *
+     * @param  string $enclosure
+     * @return static
+     */
     public function setEnclosure($enclosure)
     {
         $this->enclosure = $enclosure;

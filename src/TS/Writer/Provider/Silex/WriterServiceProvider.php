@@ -5,6 +5,7 @@ namespace TS\Writer\Provider\Silex;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 use TS\Writer\FileWriterFactory;
+
 /**
  * WriterServiceProvider
  *
