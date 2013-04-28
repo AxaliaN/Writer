@@ -5,18 +5,18 @@ use TS\Writer\Implementation\Xml;
 class XmlTest extends BaseTest
 {
     protected $data = array(
-        'array'     => array('key1' => 'value1', 'key2' => 'value2'),
-        'bool'      => true,
-        'float'     => 3.14,
-        'int'       => 1,
-        'null'      => null,
-        'string'    => 'value',
-        'xmlEntity' => array(
+        'array'      => array('key1' => 'value1', 'key2' => 'value2'),
+        'bool'       => true,
+        'float'      => 3.14,
+        'int'        => 1,
+        'null'       => null,
+        'string'     => 'value',
+        'xmlEntity'  => array(
             '@attributes' => array(
                 'key1' => 'value1',
                 'key2' => 'value2',
             ),
-            '@cdata' => 'A CDATA string that would possibly need escaping.',
+            '@cdata'      => 'A CDATA string that would possibly need escaping.',
         ),
         'xmlEntity2' => array(
             '@value' => 'test',
@@ -51,7 +51,7 @@ class XmlTest extends BaseTest
     public function testXmlAccessors()
     {
         $this->writer->setEncoding('ISO-8559-1');
-        $this->writer->setFormatOutput(false);
+        $this->writer->setPrettyPrint(false);
         $this->writer->setRootNode('foo');
 
         $reflection = new ReflectionObject($this->writer);
@@ -61,10 +61,10 @@ class XmlTest extends BaseTest
 
         $this->assertEquals('ISO-8559-1', $encoding->getValue($this->writer));
 
-        $formatOutput = $reflection->getProperty('formatOutput');
-        $formatOutput->setAccessible(true);
+        $prettyPrint = $reflection->getProperty('prettyPrint');
+        $prettyPrint->setAccessible(true);
 
-        $this->assertFalse($formatOutput->getValue($this->writer));
+        $this->assertFalse($prettyPrint->getValue($this->writer));
 
         $rootNode = $reflection->getProperty('rootNode');
         $rootNode->setAccessible(true);

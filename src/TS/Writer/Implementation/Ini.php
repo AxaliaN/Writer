@@ -18,7 +18,7 @@ class Ini extends FileWriter
     /**
      * @var bool
      */
-    protected $createSections = false;
+    private $createSections = false;
 
     /**
      * Encode the data array to a .ini compatible string.

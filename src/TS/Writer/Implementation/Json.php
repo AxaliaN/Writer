@@ -15,21 +15,6 @@ use TS\Writer\FileWriter;
 class Json extends FileWriter
 {
     /**
-     * @var bool
-     */
-    private $compatMode = false;
-
-    /**
-     * @var int
-     */
-    private $indentation = 4;
-
-    /**
-     * @var string
-     */
-    private $lineBreak = "\n";
-
-    /**
      * @var int
      */
     private $options = 0;
@@ -63,45 +48,6 @@ class Json extends FileWriter
     public function dumpData()
     {
         return json_encode($this->data, $this->options());
-    }
-
-    /**
-     * Manually set the Writer to use the compability encoding method.
-     *
-     * @param  bool   $compatMode
-     * @return static
-     */
-    public function setCompabilityMode($compatMode = true)
-    {
-        $this->compatMode = $compatMode;
-
-        return $this;
-    }
-
-    /**
-     * Sets the number of spaces used for indentation.
-     *
-     * @param  int    $indentation
-     * @return static
-     */
-    public function setIndentation($indentation = 4)
-    {
-        $this->indentation = $indentation;
-
-        return $this;
-    }
-
-    /**
-     * Sets the line break character to use when dumping json.
-     *
-     * @param  string $lineBreak
-     * @return static
-     */
-    public function setLineBreak($lineBreak = "\n")
-    {
-        $this->lineBreak = $lineBreak;
-
-        return $this;
     }
 
     /**

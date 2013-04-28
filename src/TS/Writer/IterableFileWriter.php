@@ -25,7 +25,7 @@ abstract class IterableFileWriter extends FileWriter implements IterableWriterIn
     /**
      * @var int
      */
-    protected $mode = \FILE_APPEND;
+    protected $mode = FILE_APPEND;
 
     /**
      * Morphs the data, so that we can hook into and manipulate each subset of our data array.

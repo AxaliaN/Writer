@@ -26,7 +26,7 @@ class Xml extends FileWriter
     /**
      * @var bool
      */
-    private $formatOutput = true;
+    private $prettyPrint = true;
 
     /**
      * @var string
@@ -161,7 +161,7 @@ class Xml extends FileWriter
     private function initializeXml()
     {
         $this->xml               = new DOMDocument('1.0', $this->encoding);
-        $this->xml->formatOutput = $this->formatOutput;
+        $this->xml->formatOutput = $this->prettyPrint;
 
         return $this->xml;
     }
@@ -204,14 +204,14 @@ class Xml extends FileWriter
     }
 
     /**
-     * Sets whether generated xml data should be formatted and indented.
+     * Whether or not to use pretty printing.
      *
-     * @param  bool   $formatOutput
+     * @param  bool   $prettyPrint
      * @return static
      */
-    public function setFormatOutput($formatOutput = true)
+    public function setPrettyPrint($prettyPrint = true)
     {
-        $this->formatOutput = $formatOutput;
+        $this->prettyPrint = $prettyPrint;
 
         return $this;
     }
