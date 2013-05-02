@@ -14,7 +14,7 @@ use TS\Writer\FileWriterFactory;
  * @copyright 2013
  * @version   1.0
  */
-class WriterServiceProvider
+class WriterServiceProvider implements ServiceProviderInterface
 {
     /**
      * Registers the Reader with the Silex Container.
