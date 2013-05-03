@@ -1,11 +1,20 @@
 <?php
 
-use TS\Writer\WriterEvents;
-use TS\Writer\Implementation\Txt;
+namespace TS\Writer\Tests;
+
+use PHPUnit_Framework_TestCase;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use TS\Writer\Event\IterationEvent;
 use TS\Writer\Event\WriterEvent;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use TS\Writer\Implementation\Txt;
+use TS\Writer\WriterEvents;
 
+/**
+ * @package   Writer
+ * @author    Timo Schäfer
+ * @copyright 2013
+ * @version   1.0
+ */
 class EventTest extends PHPUnit_Framework_TestCase
 {
     protected function tearDown()
@@ -25,25 +34,40 @@ class EventTest extends PHPUnit_Framework_TestCase
             WriterEvents::WRITE_COMPLETE => false,
         );
 
-        $dispatcher->addListener(WriterEvents::BEFORE_WRITE, function () use (&$listenedEvents) {
-            $listenedEvents[WriterEvents::BEFORE_WRITE] = true;
-        });
+        $dispatcher->addListener(
+            WriterEvents::BEFORE_WRITE,
+            function () use (&$listenedEvents) {
+                $listenedEvents[WriterEvents::BEFORE_WRITE] = true;
+            }
+        );
 
-        $dispatcher->addListener(WriterEvents::INIT, function () use (&$listenedEvents) {
-            $listenedEvents[WriterEvents::INIT] = true;
-        });
+        $dispatcher->addListener(
+            WriterEvents::INIT,
+            function () use (&$listenedEvents) {
+                $listenedEvents[WriterEvents::INIT] = true;
+            }
+        );
 
-        $dispatcher->addListener(WriterEvents::WRITE, function () use (&$listenedEvents) {
-            $listenedEvents[WriterEvents::WRITE] = true;
-        });
+        $dispatcher->addListener(
+            WriterEvents::WRITE,
+            function () use (&$listenedEvents) {
+                $listenedEvents[WriterEvents::WRITE] = true;
+            }
+        );
 
-        $dispatcher->addListener(WriterEvents::WRITE_ALL, function () use (&$listenedEvents) {
-            $listenedEvents[WriterEvents::WRITE_ALL] = true;
-        });
+        $dispatcher->addListener(
+            WriterEvents::WRITE_ALL,
+            function () use (&$listenedEvents) {
+                $listenedEvents[WriterEvents::WRITE_ALL] = true;
+            }
+        );
 
-        $dispatcher->addListener(WriterEvents::WRITE_COMPLETE, function () use (&$listenedEvents) {
-            $listenedEvents[WriterEvents::WRITE_COMPLETE] = true;
-        });
+        $dispatcher->addListener(
+            WriterEvents::WRITE_COMPLETE,
+            function () use (&$listenedEvents) {
+                $listenedEvents[WriterEvents::WRITE_COMPLETE] = true;
+            }
+        );
 
         $writer = new Txt($dispatcher);
         $writer->setTargetFile(__DIR__ . '/tmp/eventTest.txt');

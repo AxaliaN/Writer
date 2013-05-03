@@ -6,8 +6,6 @@ use TS\Writer\Exception\DumpingException;
 use TS\Writer\FileWriter;
 
 /**
- * Ini
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013

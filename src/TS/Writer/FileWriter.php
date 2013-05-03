@@ -7,8 +7,6 @@ use TS\Writer\Exception\FileNotSetException;
 use TS\Writer\Exception\FilesystemException;
 
 /**
- * FileWriter
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013

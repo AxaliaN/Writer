@@ -3,8 +3,6 @@
 namespace TS\Writer;
 
 /**
- * WriterEvents
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013

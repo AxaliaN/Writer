@@ -6,8 +6,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use TS\Writer\Event\WriterEvent;
 
 /**
- * AbstractWriter
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013

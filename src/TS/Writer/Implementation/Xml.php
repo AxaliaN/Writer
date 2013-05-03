@@ -9,8 +9,6 @@ use TS\Writer\Exception\DumpingException;
 use TS\Writer\FileWriter;
 
 /**
- * Xml
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013

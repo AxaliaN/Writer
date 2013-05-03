@@ -5,8 +5,6 @@ namespace TS\Writer;
 use Iterator;
 
 /**
- * IterableWriterInterface
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013

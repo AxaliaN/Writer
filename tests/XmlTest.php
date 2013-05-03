@@ -1,7 +1,16 @@
 <?php
 
+namespace TS\Writer\Tests;
+
+use ReflectionObject;
 use TS\Writer\Implementation\Xml;
 
+/**
+ * @package   Writer
+ * @author    Timo Schäfer
+ * @copyright 2013
+ * @version   1.0
+ */
 class XmlTest extends BaseTest
 {
     protected $data = array(

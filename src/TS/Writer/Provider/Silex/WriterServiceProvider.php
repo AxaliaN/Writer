@@ -7,8 +7,6 @@ use Silex\ServiceProviderInterface;
 use TS\Writer\FileWriterFactory;
 
 /**
- * WriterServiceProvider
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
@@ -17,30 +15,16 @@ use TS\Writer\FileWriterFactory;
 class WriterServiceProvider implements ServiceProviderInterface
 {
     /**
-     * Registers the Reader with the Silex Container.
+     * Registers the Writer with the Silex Container.
      *
      * @param Application $app
      */
     public function register(Application $app)
     {
         $app['writer'] = $app->share(
-            function () use ($app) {
-                return new FileWriterFactory($app['dispatcher']);
-            }
-        );
-    }
+            function ($app) {
+                $factory = new FileWriterFactory($app['dispatcher']);
 
-    /**
-     * Boots the service provider.
-     *
-     * @param Application $app
-     */
-    public function boot(Application $app)
-    {
-        $app['writer'] = $app->extend(
-            'writer',
-            function ($factory, $app) {
-                /** @var FileWriterFactory $factory */
                 $factory->registerWriter('TS\\Writer\\Implementation\\Csv');
                 $factory->registerWriter('TS\\Writer\\Implementation\\Ini');
                 $factory->registerWriter('TS\\Writer\\Implementation\\Json');
@@ -51,5 +35,14 @@ class WriterServiceProvider implements ServiceProviderInterface
                 return $factory;
             }
         );
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param Application $app
+     */
+    public function boot(Application $app)
+    {
     }
 }

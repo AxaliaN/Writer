@@ -3,8 +3,6 @@
 namespace TS\Writer;
 
 /**
- * FileWriterInterface
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013

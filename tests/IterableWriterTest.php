@@ -1,10 +1,19 @@
 <?php
 
+namespace TS\Writer\Tests;
+
+use PHPUnit_Framework_TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use TS\Writer\Event\IterationEvent;
 use TS\Writer\IterableWriter;
 use TS\Writer\WriterEvents;
 
+/**
+ * @package   Writer
+ * @author    Timo Schäfer
+ * @copyright 2013
+ * @version   1.0
+ */
 class ArrayWriter extends IterableWriter
 {
     private $array = array();
@@ -29,6 +38,12 @@ class ArrayWriter extends IterableWriter
     }
 }
 
+/**
+ * @package   Writer
+ * @author    Timo Schäfer
+ * @copyright 2013
+ * @version   1.0
+ */
 class IterableWriterTest extends PHPUnit_Framework_TestCase
 {
     /**

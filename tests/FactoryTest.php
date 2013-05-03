@@ -1,9 +1,20 @@
 <?php
 
+namespace TS\Writer\Tests;
+
+use PHPUnit_Framework_TestCase;
+use ReflectionObject;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use TS\Writer\FileWriterFactory;
 use TS\Writer\Implementation\Txt;
+use stdClass;
 
+/**
+ * @package   Writer
+ * @author    Timo Schäfer
+ * @copyright 2013
+ * @version   1.0
+ */
 class FactoryTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -54,7 +65,7 @@ class FactoryTest extends PHPUnit_Framework_TestCase
         $registry = $reflection->getProperty('registry');
         $registry->setAccessible(true);
 
-        $class = 'TS\\Writer\\Implementation\\Txt';
+        $class    = 'TS\\Writer\\Implementation\\Txt';
         $instance = new Txt(new EventDispatcher());
 
         $this->factory->registerWriter($instance);

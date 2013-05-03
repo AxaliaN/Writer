@@ -13,7 +13,7 @@ Extensible data output library.
 ```json
 {
     "require": {
-        "ts/writer": "v1.0.0"
+        "ts/writer": "1.0.*"
     }
 }
 ```
@@ -79,9 +79,9 @@ The Events triggered by the Writer can be found inside ``TS\Writer\WriterEvents`
 - **WRITE_ALL**: Dispatched when a Writer's writeAll() method is run.
 - **WRITE_COMPLETE**: Dispatched when the Writer has finished writing.
 
-## Using the Writer with Silex or Laravel 4
+## Using the Writer with Silex
 
-The Writer comes with Service Providers for both Silex and Laravel 4, which can be found in the ``TS\Writer\Provider`` namespace.
+The Writer comes with a Service Provider for Silex, which can be found in the ``TS\Writer\Provider`` namespace.
 
 ## Available implementations
 

@@ -5,8 +5,6 @@ namespace TS\Writer\Implementation;
 use TS\Writer\IterableFileWriter;
 
 /**
- * Txt
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013

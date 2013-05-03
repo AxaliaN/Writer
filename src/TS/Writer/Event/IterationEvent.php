@@ -5,8 +5,6 @@ namespace TS\Writer\Event;
 use TS\Writer\IterableWriterInterface;
 
 /**
- * IterationEvent
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
@@ -28,7 +26,7 @@ class IterationEvent extends WriterEvent
     }
 
     /**
-     * Returns the last line written of the IterableWriter.
+     * Returns the last line of the IterableWriter.
      *
      * @return array
      */

@@ -6,7 +6,7 @@ use Exception;
 use RuntimeException;
 
 /**
- * DumpingException
+ * Thrown when anything unwanted happens during data dumping.
  *
  * @package   Writer
  * @author    Timo Schäfer
@@ -16,17 +16,11 @@ use RuntimeException;
 final class DumpingException extends RuntimeException
 {
     /**
-     * Thrown when anything unwanted happens during data dumping.
-     *
      * @param string    $message
      * @param Exception $previous
      */
     public function __construct($message, Exception $previous = null)
     {
-        parent::__construct(
-            $message,
-            0,
-            $previous
-        );
+        parent::__construct($message, 0, $previous);
     }
 }

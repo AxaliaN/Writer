@@ -6,8 +6,6 @@ use Symfony\Component\Yaml\Dumper;
 use TS\Writer\FileWriter;
 
 /**
- * Yaml
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013

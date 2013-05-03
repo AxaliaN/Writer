@@ -5,8 +5,6 @@ namespace TS\Writer\Implementation;
 use TS\Writer\IterableFileWriter;
 
 /**
- * Csv
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013

@@ -1,8 +1,17 @@
 <?php
 
+namespace TS\Writer\Tests;
+
+use ReflectionObject;
 use TS\Writer\Exception\FilesystemException;
 use TS\Writer\Implementation\Ini;
 
+/**
+ * @package   Writer
+ * @author    Timo Schäfer
+ * @copyright 2013
+ * @version   1.0
+ */
 class IniTest extends BaseTest
 {
     /**
@@ -145,7 +154,9 @@ class IniTest extends BaseTest
 
     public function testSectioned()
     {
-        $this->writer->setData(array('section1' => array('array' => array('value1', 'value2')), 'section2' => array('key' => 'value')));
+        $this->writer->setData(
+            array('section1' => array('array' => array('value1', 'value2')), 'section2' => array('key' => 'value'))
+        );
         $this->writer->createSections(true);
 
         $this->assertTrue($this->writer->writeAll());

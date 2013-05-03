@@ -7,8 +7,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use TS\Writer\Exception\FactoryException;
 
 /**
- * FileWriterFactory
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
