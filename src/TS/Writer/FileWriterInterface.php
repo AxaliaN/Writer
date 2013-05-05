@@ -56,14 +56,14 @@ interface FileWriterInterface extends WriterInterface
     public function setTargetFile($filePath, $createDir = false);
 
     /**
-     * Returns the types supported by the Writer using an indexed array - lower keys have higher prevalence.
+     * Returns the types supported by the writer using an indexed array.
      *
      * @return array
      */
     public function supportedTypes();
 
     /**
-     * Returns whether this Writer supports writing a file of the given type.
+     * Returns whether this writer supports writing a file of the given type.
      *
      * @param  string $fileType
      * @return bool

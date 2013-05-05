@@ -40,7 +40,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
     const FILE_MODE_OVERWRITE = 0;
 
     /**
-     * Validates whether the given file name has the correct extension for this Writer and
+     * Validates whether the given file name has the correct extension for this writer and
      * converts it if it doesn't match one of the supported ones.
      *
      * @param  string $fileName
@@ -160,7 +160,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
     }
 
     /**
-     * Returns whether this Writer supports writing a file of the given type.
+     * Returns whether this writer supports writing a file of the given type.
      *
      * @param  string $fileType
      * @return bool

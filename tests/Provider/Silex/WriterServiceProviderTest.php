@@ -31,6 +31,12 @@ class WriterServiceProviderTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('TS\\Writer\\FileWriterFactory', $this->application['writer']);
     }
 
+    public function testBoot()
+    {
+        $this->application->register(new WriterServiceProvider);
+        $this->application->boot();
+    }
+
     /**
      * @dataProvider writerClasses
      */

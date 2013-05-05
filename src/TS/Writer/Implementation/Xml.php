@@ -98,7 +98,7 @@ class Xml extends FileWriter
             }
         }
 
-        // Create Subnodes through recursion
+        // Create subnodes through recursion
         if (is_array($data)) {
             // Recurse to get the node for that key
             foreach ($data as $key => $value) {
@@ -121,7 +121,7 @@ class Xml extends FileWriter
             }
         }
 
-        // after we are done with all the keys in the array (if it is one)
+        // After we're done with all the keys in the array (if it is one)
         // we check if it has any text value, if yes, append it.
         if (!is_array($data)) {
             $childNode = @$this->xml->createTextNode($this->convertBool($data));
@@ -158,7 +158,8 @@ class Xml extends FileWriter
      */
     private function initializeXml()
     {
-        $this->xml               = new DOMDocument('1.0', $this->encoding);
+        $this->xml = new DOMDocument('1.0', $this->encoding);
+
         $this->xml->formatOutput = $this->prettyPrint;
 
         return $this->xml;
@@ -228,7 +229,7 @@ class Xml extends FileWriter
     }
 
     /**
-     * Returns the types supported by the Writer using an indexed array - lower keys have higher prevalence.
+     * Returns the types supported by the writer using an indexed array.
      *
      * @return array
      */

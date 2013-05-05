@@ -37,7 +37,7 @@ class WriterEvent extends Event
     }
 
     /**
-     * Returns the Writer.
+     * Returns the writer.
      *
      * @return WriterInterface
      */

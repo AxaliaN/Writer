@@ -20,12 +20,13 @@ Extensible data output library.
 
 ## Direct usage of an implementation
 
-If you know exactly what you want to output, feel free to instantiate a Writer implementation directly:
+If you know exactly what you want to output, feel free to instantiate a writer implementation directly:
 
 ```php
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use TS\Writer\Implementation\Json;
 
+// Creating the writer
 $jsonWriter = new Json(new EventDispatcher);
 
 // Setting the data array
@@ -40,12 +41,13 @@ $jsonWriter->writeAll();
 
 ## Using the FileWriterFactory
 
-Instead of instantiating Writer implementations directly you can use the FileWriterFactory to create the Writer.
+Instead of instantiating writer implementations directly you can use the FileWriterFactory to create the writer:
 
 ```php
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use TS\Writer\FileWriterFactory;
 
+// Creating the FileWriterFactory
 $factory = new FileWriterFactory(new EventDispatcher);
 
 // Registration
@@ -54,7 +56,7 @@ $factory->registerWriter('TS\\Writer\\Implementation\\Json');
 // Registering further implementations...
 // ...
 
-// Creating the Writer
+// Creating the writer
 $writer = $factory->createForType('json');
 
 // Setting the data array
@@ -69,19 +71,19 @@ $writer->writeAll();
 
 ## Using the Symfony EventDispatcher
 
-You can intercept or influence most parts of the Writer's lifecycle by utilizing [Symfony's EventDispatcher Component](http://symfony.com/doc/current/components/event_dispatcher/introduction.html).
+You can intercept or influence most parts of the writer's lifecycle by utilizing [Symfony's EventDispatcher Component](http://symfony.com/doc/current/components/event_dispatcher/introduction.html).
 
-The Events triggered by the Writer can be found inside ``TS\Writer\WriterEvents``:
+The events triggered by the writer can be found in the ``TS\Writer\WriterEvents`` namespace:
 
-- **BEFORE_WRITE**: Dispatched before the Writer tries to write.
-- **INIT**: Dispatched when the Writer is instantiated.
+- **BEFORE_WRITE**: Dispatched before the writer tries to write.
+- **INIT**: Dispatched when the writer is instantiated.
 - **WRITE**: Dispatched when a line write occurs.
-- **WRITE_ALL**: Dispatched when a Writer's writeAll() method is run.
-- **WRITE_COMPLETE**: Dispatched when the Writer has finished writing.
+- **WRITE_ALL**: Dispatched when a writer's writeAll() method is called.
+- **WRITE_COMPLETE**: Dispatched when the writer has finished writing.
 
-## Using the Writer with Silex
+## Using the writer with Silex
 
-The Writer comes with a Service Provider for Silex, which can be found in the ``TS\Writer\Provider`` namespace.
+The writer comes with a Service Provider for Silex, which can be found in the ``TS\Writer\Provider`` namespace.
 
 ## Available implementations
 

@@ -6,7 +6,7 @@ use Exception;
 use RuntimeException;
 
 /**
- * Thrown when the FileWriterFactory wasn't able to create a matching Writer.
+ * Thrown when the FileWriterFactory wasn't able to create a matching writer.
  *
  * @package   Writer
  * @author    Timo Schäfer

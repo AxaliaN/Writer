@@ -40,8 +40,7 @@ class Txt extends IterableFileWriter
     }
 
     /**
-     * Returns the types supported by the Writer using an indexed array - lower keys
-     * have higher prevalence.
+     * Returns the types supported by the Writer using an indexed array.
      *
      * @return array
      */
