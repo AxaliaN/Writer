@@ -6,7 +6,7 @@ use Exception;
 use RuntimeException;
 
 /**
- * FactoryException
+ * Thrown when the FileWriterFactory wasn't able to create a matching writer.
  *
  * @package   Writer
  * @author    Timo Schäfer
@@ -16,8 +16,6 @@ use RuntimeException;
 final class FactoryException extends RuntimeException
 {
     /**
-     * Thrown when the FileWriterFactory wasn't able to create a matching Writer.
-     *
      * @param  string    $type
      * @param  Exception $previous
      */

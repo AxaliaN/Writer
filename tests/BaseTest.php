@@ -1,7 +1,17 @@
 <?php
 
-use Symfony\Component\EventDispatcher\EventDispatcher;
+namespace TS\Writer\Tests;
 
+use PHPUnit_Framework_TestCase;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use stdClass;
+
+/**
+ * @package   Writer
+ * @author    Timo Schäfer
+ * @copyright 2013
+ * @version   1.0
+ */
 abstract class BaseTest extends PHPUnit_Framework_TestCase
 {
     protected $data = array(

@@ -6,8 +6,6 @@ use Symfony\Component\EventDispatcher\Event;
 use TS\Writer\WriterInterface;
 
 /**
- * WriterEvent
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
@@ -39,7 +37,7 @@ class WriterEvent extends Event
     }
 
     /**
-     * Returns the Writer.
+     * Returns the writer.
      *
      * @return WriterInterface
      */

@@ -6,8 +6,6 @@ use TS\Writer\Exception\DumpingException;
 use TS\Writer\FileWriter;
 
 /**
- * Ini
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
@@ -21,7 +19,7 @@ class Ini extends FileWriter
     private $createSections = false;
 
     /**
-     * Encode the data array to a .ini compatible string.
+     * Encode the data array to a ini compatible string.
      *
      * @param  mixed            $data
      * @param  int              $stackLevel
@@ -54,7 +52,7 @@ class Ini extends FileWriter
     }
 
     /**
-     * Encode the array to a flat .ini string.
+     * Encode the array to a flat ini string.
      *
      * @param  array            $data
      * @param  int              $stackLevel
@@ -83,7 +81,7 @@ class Ini extends FileWriter
     }
 
     /**
-     * Encode the array to sectioned .ini string.
+     * Encode the array to sectioned ini string.
      *
      * @param  array            $data
      * @param  int              $stackLevel
@@ -150,8 +148,7 @@ class Ini extends FileWriter
     }
 
     /**
-     * Returns the types supported by the Writer using an indexed array - lower keys
-     * have higher prevalence.
+     * Returns the types supported by the writer using an indexed array.
      *
      * @return array
      */

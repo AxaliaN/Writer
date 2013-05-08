@@ -7,8 +7,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use TS\Writer\Exception\FactoryException;
 
 /**
- * FileWriterFactory
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
@@ -35,7 +33,7 @@ class FileWriterFactory
     }
 
     /**
-     * Tries to create a Writer for the given $type.
+     * Tries to create a writer for the given $type.
      *
      * @param  string              $type
      * @return FileWriterInterface
@@ -53,7 +51,7 @@ class FileWriterFactory
     }
 
     /**
-     * Registers a new Writer implementation with the Factory.
+     * Registers a new writer implementation with the factory.
      *
      * @param  string|FileWriterInterface $writer
      * @return static
@@ -84,7 +82,7 @@ class FileWriterFactory
     }
 
     /**
-     * Unregisters a Writer from the Factory's registry.
+     * Unregisters a writer from the factory's registry.
      *
      * @param  string|object $writer
      * @return static

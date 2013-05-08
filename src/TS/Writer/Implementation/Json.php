@@ -5,8 +5,6 @@ namespace TS\Writer\Implementation;
 use TS\Writer\FileWriter;
 
 /**
- * Json
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
@@ -86,8 +84,7 @@ class Json extends FileWriter
     }
 
     /**
-     * Returns the types supported by the Writer using an indexed array - lower keys
-     * have higher prevalence.
+     * Returns the types supported by the Writer using an indexed array.
      *
      * @return array
      */

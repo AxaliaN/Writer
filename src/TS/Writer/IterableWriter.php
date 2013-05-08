@@ -6,8 +6,6 @@ use TS\Writer\Event\IterationEvent;
 use TS\Writer\Event\WriterEvent;
 
 /**
- * IterableWriter
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013

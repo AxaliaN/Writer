@@ -6,7 +6,7 @@ use Exception;
 use LogicException;
 
 /**
- * FileNotSetException
+ * Thrown when a file writer is told to write without defining the file path.
  *
  * @package   Writer
  * @author    Timo Schäfer
@@ -16,8 +16,6 @@ use LogicException;
 final class FileNotSetException extends LogicException
 {
     /**
-     * Thrown when a file writer is told to write without defining the file path.
-     *
      * @param Exception $previous
      */
     public function __construct(Exception $previous = null)

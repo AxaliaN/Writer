@@ -3,8 +3,6 @@
 namespace TS\Writer;
 
 /**
- * WriterEvents
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
@@ -13,7 +11,7 @@ namespace TS\Writer;
 abstract class WriterEvents
 {
     /**
-     * Dispatched before the Writer tries to write.
+     * Dispatched before the writer tries to write.
      *
      * Arguments:
      * - Writer instance
@@ -23,7 +21,7 @@ abstract class WriterEvents
     const BEFORE_WRITE = 'writer.before_write';
 
     /**
-     * Dispatched when the Writer is instantiated.
+     * Dispatched when the writer is instantiated.
      *
      * Arguments:
      * - Writer instance
@@ -44,7 +42,7 @@ abstract class WriterEvents
     const WRITE = 'writer.write';
 
     /**
-     * Dispatched when a Writer's writeAll() method is run.
+     * Dispatched when a writer's writeAll() method is called.
      *
      * Arguments:
      * - Writer instance
@@ -54,7 +52,7 @@ abstract class WriterEvents
     const WRITE_ALL = 'writer.write_all';
 
     /**
-     * Dispatched when the Writer has finished writing.
+     * Dispatched when the writer has finished writing.
      *
      * Arguments:
      * - Writer instance

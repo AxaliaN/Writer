@@ -8,8 +8,6 @@ use TS\Writer\Exception\FileNotSetException;
 use TS\Writer\Exception\FilesystemException;
 
 /**
- * IterableFileWriter
- *
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013

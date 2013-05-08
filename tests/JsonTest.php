@@ -1,7 +1,16 @@
 <?php
 
+namespace TS\Writer\Tests;
+
+use ReflectionObject;
 use TS\Writer\Implementation\Json;
 
+/**
+ * @package   Writer
+ * @author    Timo Schäfer
+ * @copyright 2013
+ * @version   1.0
+ */
 class JsonTest extends BaseTest
 {
     protected $data = array(
