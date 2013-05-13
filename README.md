@@ -81,9 +81,9 @@ The events triggered by the writer can be found in the ``TS\Writer\WriterEvents`
 - **WRITE_ALL**: Dispatched when a writer's writeAll() method is called.
 - **WRITE_COMPLETE**: Dispatched when the writer has finished writing.
 
-## Using the writer with Silex
+## Using the writer with Laravel and Silex
 
-The writer comes with a Service Provider for Silex, which can be found in the ``TS\Writer\Provider`` namespace.
+The writer comes with a Service Provider for both Laravel and Silex, which can be found in the ``TS\Writer\Provider`` namespace.
 
 ## Available implementations
 
