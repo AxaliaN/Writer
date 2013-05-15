@@ -8,12 +8,12 @@ Extensible data output library.
 
 ## Installation
 
-[Download the latest stable version](https://github.com/timoschaefer/Writer/archive/1.0.zip) or simply use [Composer](http://getcomposer.org) to install:
+Use [Composer](http://getcomposer.org) to install:
 
 ```json
 {
     "require": {
-        "ts/writer": "1.0.*"
+        "ts/writer": "1.1.*"
     }
 }
 ```
@@ -81,9 +81,9 @@ The events triggered by the writer can be found in the ``TS\Writer\WriterEvents`
 - **WRITE_ALL**: Dispatched when a writer's writeAll() method is called.
 - **WRITE_COMPLETE**: Dispatched when the writer has finished writing.
 
-## Using the writer with Silex
+## Using the writer with Laravel and Silex
 
-The writer comes with a Service Provider for Silex, which can be found in the ``TS\Writer\Provider`` namespace.
+The writer comes with service providers for both Laravel and Silex, which can be found in the ``TS\Writer\Provider`` namespace.
 
 ## Available implementations
 
@@ -96,4 +96,4 @@ The writer comes with a Service Provider for Silex, which can be found in the ``
 | Xml   | TS\Writer\Implementation\Xml   |
 | Yaml  | TS\Writer\Implementation\Yaml  |
 
-Since creating excel sheets can be a little complex I've opted out of trying to achieve an abstraction. Feel free to use the great [PHPExcel Library](http://phpexcel.codeplex.com/) directly for that purpose.
+Since creating excel sheets can be a little complex I've opted out of trying to achieve an abstraction. Feel free to use the great [PHPExcel library](http://phpexcel.codeplex.com/) directly for that purpose.
