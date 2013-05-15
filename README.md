@@ -13,7 +13,7 @@ Use [Composer](http://getcomposer.org) to install:
 ```json
 {
     "require": {
-        "ts/writer": "1.0.*"
+        "ts/writer": "1.1.*"
     }
 }
 ```
