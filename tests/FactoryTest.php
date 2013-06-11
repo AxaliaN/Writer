@@ -4,16 +4,16 @@ namespace TS\Writer\Tests;
 
 use PHPUnit_Framework_TestCase;
 use ReflectionObject;
+use stdClass;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use TS\Writer\FileWriterFactory;
 use TS\Writer\Implementation\Txt;
-use stdClass;
 
 /**
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
- * @version   1.0
+ * @version   1.1
  */
 class FactoryTest extends PHPUnit_Framework_TestCase
 {

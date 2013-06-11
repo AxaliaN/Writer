@@ -9,7 +9,7 @@ use TS\Writer\Event\WriterEvent;
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
- * @version   1.0
+ * @version   1.1
  */
 abstract class AbstractWriter implements WriterInterface
 {
@@ -55,7 +55,7 @@ abstract class AbstractWriter implements WriterInterface
     /**
      * Sets the data array to be written.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return static
      */
     public function setData(array $data)

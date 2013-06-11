@@ -9,7 +9,7 @@ use TS\Writer\FileWriter;
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
- * @version   1.0
+ * @version   1.1
  */
 class Ini extends FileWriter
 {
@@ -21,8 +21,8 @@ class Ini extends FileWriter
     /**
      * Encode the data array to a ini compatible string.
      *
-     * @param  mixed            $data
-     * @param  int              $stackLevel
+     * @param  mixed $data
+     * @param  int   $stackLevel
      * @return string
      * @throws DumpingException
      */
@@ -54,8 +54,8 @@ class Ini extends FileWriter
     /**
      * Encode the array to a flat ini string.
      *
-     * @param  array            $data
-     * @param  int              $stackLevel
+     * @param  array $data
+     * @param  int   $stackLevel
      * @return string
      * @throws DumpingException
      */
@@ -83,8 +83,8 @@ class Ini extends FileWriter
     /**
      * Encode the array to sectioned ini string.
      *
-     * @param  array            $data
-     * @param  int              $stackLevel
+     * @param  array $data
+     * @param  int   $stackLevel
      * @return string
      * @throws DumpingException
      */
@@ -127,7 +127,7 @@ class Ini extends FileWriter
     /**
      * Sets whether to create sectioned ini files or not.
      *
-     * @param  bool   $createSections
+     * @param  bool $createSections
      * @return static
      */
     public function createSections($createSections = true)

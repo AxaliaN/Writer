@@ -9,7 +9,7 @@ use TS\Writer\Event\WriterEvent;
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
- * @version   1.0
+ * @version   1.1
  */
 abstract class IterableWriter extends AbstractWriter implements IterableWriterInterface
 {
@@ -81,7 +81,7 @@ abstract class IterableWriter extends AbstractWriter implements IterableWriterIn
     /**
      * Sets the data array for the current line.
      *
-     * @param  mixed  $lastLine
+     * @param  mixed $lastLine
      * @return static
      */
     public function setLastLine($lastLine = null)

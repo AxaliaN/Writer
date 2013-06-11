@@ -8,7 +8,7 @@ use TS\Writer\IterableFileWriter;
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
- * @version   1.0
+ * @version   1.1
  */
 class Csv extends IterableFileWriter
 {

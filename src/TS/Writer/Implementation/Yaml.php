@@ -9,7 +9,7 @@ use TS\Writer\FileWriter;
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
- * @version   1.0
+ * @version   1.1
  */
 class Yaml extends FileWriter
 {
@@ -39,7 +39,7 @@ class Yaml extends FileWriter
     /**
      * Sets the number of spaces used for indentation.
      *
-     * @param  int    $indentation
+     * @param  int $indentation
      * @return static
      */
     public function setIndentation($indentation = 4)
@@ -52,7 +52,7 @@ class Yaml extends FileWriter
     /**
      * Sets the nesting level where data gets displayed inline.
      *
-     * @param  int    $inlineLevel
+     * @param  int $inlineLevel
      * @return static
      */
     public function setInlineLevel($inlineLevel = 3)

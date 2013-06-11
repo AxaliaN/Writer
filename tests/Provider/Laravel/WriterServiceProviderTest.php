@@ -2,8 +2,8 @@
 
 namespace TS\Writer\Provider\Laravel\Tests;
 
-use Illuminate\Foundation\Application;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Facade;
 use PHPUnit_Framework_TestCase;
 use TS\Writer\Provider\Laravel\WriterServiceProvider;
@@ -12,7 +12,7 @@ use TS\Writer\Provider\Laravel\WriterServiceProvider;
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
- * @version   1.0
+ * @version   1.1
  */
 class WriterServiceProviderTest extends PHPUnit_Framework_TestCase
 {
@@ -44,9 +44,11 @@ class WriterServiceProviderTest extends PHPUnit_Framework_TestCase
     {
         $this->application->register(new WriterServiceProvider($this->application));
 
-        $this->application->registerAliasLoader(array(
-            'Writer' => 'TS\\Writer\\Provider\\Laravel\\Facade\\Writer'
-        ));
+        AliasLoader::getInstance(
+            array(
+                'Writer' => 'TS\\Writer\\Provider\\Laravel\\Facade\\Writer'
+            )
+        )->register();
 
         Facade::setFacadeApplication($this->application);
 
@@ -64,7 +66,10 @@ class WriterServiceProviderTest extends PHPUnit_Framework_TestCase
     public function testSymfonyEventDispatcherRegistered()
     {
         $this->application->register(new WriterServiceProvider($this->application));
-        $this->assertInstanceOf('Symfony\\Component\\EventDispatcher\\EventDispatcher', $this->application['symfony.dispatcher']);
+        $this->assertInstanceOf(
+            'Symfony\\Component\\EventDispatcher\\EventDispatcher',
+            $this->application['symfony.dispatcher']
+        );
     }
 
     /**

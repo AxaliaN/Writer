@@ -10,7 +10,7 @@ use TS\Writer\Exception\FactoryException;
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
- * @version   1.0
+ * @version   1.1
  */
 class FileWriterFactory
 {
@@ -35,7 +35,7 @@ class FileWriterFactory
     /**
      * Tries to create a writer for the given $type.
      *
-     * @param  string              $type
+     * @param  string $type
      * @return FileWriterInterface
      * @throws FactoryException
      */

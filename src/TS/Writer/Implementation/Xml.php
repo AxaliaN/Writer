@@ -12,7 +12,7 @@ use TS\Writer\FileWriter;
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
- * @version   1.0
+ * @version   1.1
  */
 class Xml extends FileWriter
 {
@@ -54,8 +54,8 @@ class Xml extends FileWriter
      * Converts the given $data array to a DOMElement node which will be
      * attached to the DOMDocument created by initializeXml().
      *
-     * @param  string           $nodeName
-     * @param  array            $data
+     * @param  string $nodeName
+     * @param  array  $data
      * @return DOMElement
      * @throws DumpingException
      */
@@ -205,7 +205,7 @@ class Xml extends FileWriter
     /**
      * Whether or not to use pretty printing.
      *
-     * @param  bool   $prettyPrint
+     * @param  bool $prettyPrint
      * @return static
      */
     public function setPrettyPrint($prettyPrint = true)

@@ -12,7 +12,7 @@ use TS\Writer\WriterEvents;
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
- * @version   1.0
+ * @version   1.1
  */
 class ArrayWriter extends IterableWriter
 {

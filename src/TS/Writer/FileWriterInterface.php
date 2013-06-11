@@ -6,7 +6,7 @@ namespace TS\Writer;
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
- * @version   1.0
+ * @version   1.1
  */
 interface FileWriterInterface extends WriterInterface
 {
@@ -41,7 +41,7 @@ interface FileWriterInterface extends WriterInterface
     /**
      * Sets the mode a file should be accessed with.
      *
-     * @param  int    $mode
+     * @param  int $mode
      * @return static
      */
     public function setFileAccessMode($mode = 0);

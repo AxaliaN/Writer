@@ -10,7 +10,7 @@ use TS\Writer\Exception\FilesystemException;
  * @package   Writer
  * @author    Timo Schäfer
  * @copyright 2013
- * @version   1.0
+ * @version   1.1
  */
 abstract class FileWriter extends AbstractWriter implements FileWriterInterface
 {
@@ -97,7 +97,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
     /**
      * Sets the mode a file should be accessed with.
      *
-     * @param  int    $mode
+     * @param  int $mode
      * @return static
      */
     public function setFileAccessMode($mode = 0)
@@ -123,8 +123,8 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
     /**
      * Sets the path and file that the data should be written to.
      *
-     * @param  string              $filePath
-     * @param  bool                $createDir
+     * @param  string $filePath
+     * @param  bool   $createDir
      * @return static
      * @throws FilesystemException
      */
