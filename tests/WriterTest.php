@@ -56,4 +56,3 @@ class WriterTest extends BaseTest
         $this->assertTrue(file_exists($this->tmpDir . '2/test.txt'));
     }
 }
- 
