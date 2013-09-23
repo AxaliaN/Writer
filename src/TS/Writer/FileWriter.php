@@ -140,7 +140,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
             }
 
             // @codeCoverageIgnoreStart
-            if (@mkdir($tarDir) === false) {
+            if (@mkdir($tarDir, 0777, true) === false) {
                 throw new FilesystemException(
                     sprintf('Could not create path [%s].', $tarDir)
                 );
