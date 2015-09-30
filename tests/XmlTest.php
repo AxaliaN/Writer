@@ -8,8 +8,8 @@ use TS\Writer\Implementation\Xml;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class XmlTest extends BaseTest
 {
@@ -52,9 +52,7 @@ class XmlTest extends BaseTest
 
     public function testFactory()
     {
-        ini_set('zend.ze1_compatibility_mode', 1);
         $this->assertInstanceOf('TS\\Writer\\Implementation\\Xml', Xml::factory($this->dispatcher));
-        ini_set('zend.ze1_compatibility_mode', 0);
     }
 
     public function testXmlAccessors()

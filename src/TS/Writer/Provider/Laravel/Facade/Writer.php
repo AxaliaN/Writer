@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class Writer extends Facade
 {

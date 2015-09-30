@@ -4,13 +4,13 @@ namespace TS\Writer\Provider\Silex;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
-use TS\Writer\FileWriterFactory;
+use TS\Writer\FileWriterContainer;
 
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class WriterServiceProvider implements ServiceProviderInterface
 {
@@ -23,16 +23,16 @@ class WriterServiceProvider implements ServiceProviderInterface
     {
         $app['writer'] = $app->share(
             function ($app) {
-                $factory = new FileWriterFactory($app['dispatcher']);
+                $container = new FileWriterContainer($app['dispatcher']);
 
-                $factory->registerWriter('TS\\Writer\\Implementation\\Csv');
-                $factory->registerWriter('TS\\Writer\\Implementation\\Ini');
-                $factory->registerWriter('TS\\Writer\\Implementation\\Json');
-                $factory->registerWriter('TS\\Writer\\Implementation\\Txt');
-                $factory->registerWriter('TS\\Writer\\Implementation\\Xml');
-                $factory->registerWriter('TS\\Writer\\Implementation\\Yaml');
+                $container->registerWriter('TS\\Writer\\Implementation\\Csv', 'csv');
+                $container->registerWriter('TS\\Writer\\Implementation\\Ini', 'ini');
+                $container->registerWriter('TS\\Writer\\Implementation\\Json', 'json');
+                $container->registerWriter('TS\\Writer\\Implementation\\Txt', 'txt');
+                $container->registerWriter('TS\\Writer\\Implementation\\Xml', 'xml');
+                $container->registerWriter('TS\\Writer\\Implementation\\Yaml', array('yml', 'yaml'));
 
-                return $factory;
+                return $container;
             }
         );
     }

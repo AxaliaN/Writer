@@ -7,8 +7,8 @@ use TS\Writer\IterableWriterInterface;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class IterationEvent extends WriterEvent
 {

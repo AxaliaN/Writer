@@ -2,9 +2,9 @@
 
 Extensible data output library.
 
-## Build status
+## Build status and SensioLabs Insight medal
 
-[![Build Status](https://travis-ci.org/timoschaefer/Writer.png)](https://travis-ci.org/timoschaefer/Writer)
+[![Build Status](https://travis-ci.org/timoschaefer/Writer.png)](https://travis-ci.org/timoschaefer/Writer) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/5e2e0920-458d-4d20-8cd6-c324b4524a00/mini.png)](https://insight.sensiolabs.com/projects/5e2e0920-458d-4d20-8cd6-c324b4524a00)
 
 ## Installation
 
@@ -13,7 +13,7 @@ Use [Composer](http://getcomposer.org) to install:
 ```json
 {
     "require": {
-        "ts/writer": "1.1.*"
+        "ts/writer": "1.2.*"
     }
 }
 ```
@@ -39,25 +39,25 @@ $jsonWriter->setTargetFile(/* path where the .json file should be created */);
 $jsonWriter->writeAll();
 ```
 
-## Using the FileWriterFactory
+## Using the FileWriterContainer
 
-Instead of instantiating writer implementations directly you can use the FileWriterFactory to create the writer:
+Instead of instantiating writer implementations directly you can use the FileWriterContainer to create the writer:
 
 ```php
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use TS\Writer\FileWriterFactory;
+use TS\Writer\FileWriterContainer;
 
-// Creating the FileWriterFactory
-$factory = new FileWriterFactory(new EventDispatcher);
+// Creating the FileWriterContainer
+$container = new FileWriterContainer(new EventDispatcher);
 
-// Registration
-$factory->registerWriter('TS\\Writer\\Implementation\\Json');
+// Registration and setting a type
+$container->registerWriter('TS\\Writer\\Implementation\\Json', 'json');
 // ...
 // Registering further implementations...
 // ...
 
 // Creating the writer
-$writer = $factory->createForType('json');
+$writer = $container->createForType('json');
 
 // Setting the data array
 $writer->setData(array(/* ... */));
@@ -67,6 +67,28 @@ $writer->setTargetFile(/* path where the .json file should be created */);
 
 // Dumping the data
 $writer->writeAll();
+```
+
+Also supports everyone's favorite ``ArrayAccess`` interface:
+
+```php
+// Register
+$container['json'] = 'TS\\Writer\\Implementation\\Json';
+
+// Create writer
+$writer = $container['json'];
+// ... or
+$writer = $container['TS\\Writer\\Implementation\\Json'];
+
+// Check if writer or type is supported
+var_dump(isset($container['json'])); // true
+
+// Unregister
+unset($container['json']);
+// ... or
+unset($container['TS\\Writer\\Implementation\\Json']);
+// ... or
+unset($container[$writer]);
 ```
 
 ## Using the Symfony EventDispatcher

@@ -10,8 +10,8 @@ use TS\Writer\Exception\FilesystemException;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 abstract class IterableFileWriter extends FileWriter implements IterableWriterInterface
 {
@@ -96,7 +96,7 @@ abstract class IterableFileWriter extends FileWriter implements IterableWriterIn
     /**
      * Sets the data array for the current line.
      *
-     * @param  mixed  $lastLine
+     * @param  mixed $lastLine
      * @return static
      */
     public function setLastLine($lastLine = null)
@@ -137,11 +137,13 @@ abstract class IterableFileWriter extends FileWriter implements IterableWriterIn
 
             $success = $this->writeLine($data);
 
+            // @codeCoverageIgnoreStart
             if (!$success) {
                 throw new FilesystemException(
                     sprintf("Couldn't write to file [%s].", $this->file)
                 );
             }
+            // @codeCoverageIgnoreEnd
         }
 
         return $success;

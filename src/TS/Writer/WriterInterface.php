@@ -5,8 +5,8 @@ namespace TS\Writer;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 interface WriterInterface
 {
@@ -20,7 +20,7 @@ interface WriterInterface
     /**
      * Sets the data array to be written.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return static
      */
     public function setData(array $data);

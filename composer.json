@@ -11,7 +11,8 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/event-dispatcher": "~2.1",
-        "symfony/yaml": "~2.1"
+        "symfony/yaml": "~2.1",
+        "zendframework/zend-json": "~2.2"
     },
     "require-dev": {
         "laravel/framework": "4.0.*@dev",
@@ -21,8 +22,7 @@
     "autoload": {
         "psr-0": {
             "TS\\Writer\\": "src/"
-        },
-        "files": [ "json_compat.php" ]
+        }
     },
     "extra": {
         "branch-alias": {

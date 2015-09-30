@@ -9,8 +9,8 @@ use TS\Writer\Exception\FilesystemException;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 abstract class FileWriter extends AbstractWriter implements FileWriterInterface
 {
@@ -40,38 +40,20 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
     const FILE_MODE_OVERWRITE = 0;
 
     /**
-     * Validates whether the given file name has the correct extension for this writer and
-     * converts it if it doesn't match one of the supported ones.
-     *
-     * @param  string $fileName
-     * @return string
-     */
-    protected function validateFileName($fileName)
-    {
-        $pathinfo = pathinfo($fileName);
-
-        // Wrong extension, set the correct one - the one with the highest prevalence
-        // set in our supportedTypes() method.
-        if (!isset($pathinfo['extension']) || !$this->supports($pathinfo['extension'])) {
-            $types        = $this->supportedTypes();
-            $newExtension = reset($types);
-            $fileName     = $pathinfo['dirname'] . '/' . $pathinfo['filename'] . '.' . $newExtension;
-        }
-
-        return $fileName;
-    }
-
-    /**
      * Returns the name of the file that should be written to.
      *
      * @return string
      */
     public function getFileName()
     {
+        if (!$this->isFileSet()) {
+            return null;
+        }
+
         $filename = pathinfo($this->file, PATHINFO_FILENAME);
         $ext      = pathinfo($this->file, PATHINFO_EXTENSION);
 
-        return ($this->isFileSet() ? $filename . (!empty($ext) ? '.' . $ext : '') : null);
+        return $filename . (!empty($ext) ? '.' . $ext : '');
     }
 
     /**
@@ -97,7 +79,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
     /**
      * Sets the mode a file should be accessed with.
      *
-     * @param  int    $mode
+     * @param  int $mode
      * @return static
      */
     public function setFileAccessMode($mode = 0)
@@ -123,8 +105,8 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
     /**
      * Sets the path and file that the data should be written to.
      *
-     * @param  string              $filePath
-     * @param  bool                $createDir
+     * @param  string $filePath
+     * @param  bool   $createDir
      * @return static
      * @throws FilesystemException
      */
@@ -140,7 +122,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
             }
 
             // @codeCoverageIgnoreStart
-            if (@mkdir($tarDir, 0777, true) === false) {
+            if (@mkdir($tarDir, 0755, true) === false) {
                 throw new FilesystemException(
                     sprintf('Could not create path [%s].', $tarDir)
                 );
@@ -154,20 +136,9 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
         }
         // @codeCoverageIgnoreEnd
 
-        $this->file = $this->validateFileName($filePath);
+        $this->file = $filePath;
 
         return $this;
-    }
-
-    /**
-     * Returns whether this writer supports writing a file of the given type.
-     *
-     * @param  string $fileType
-     * @return bool
-     */
-    public function supports($fileType)
-    {
-        return in_array($fileType, $this->supportedTypes(), true);
     }
 
     /**
@@ -191,9 +162,11 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
         $success = (bool)@file_put_contents($this->file, $data, $this->mode);
 
         if ($success === false) {
+            // @codeCoverageIgnoreStart
             throw new FilesystemException(
                 sprintf("Couldn't write to file [%s].", $this->file)
             );
+            // @codeCoverageIgnoreEnd
         }
 
         $this->eventDispatcher->dispatch(WriterEvents::WRITE_COMPLETE, new WriterEvent($this));

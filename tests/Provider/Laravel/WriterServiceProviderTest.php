@@ -2,8 +2,8 @@
 
 namespace TS\Writer\Provider\Laravel\Tests;
 
-use Illuminate\Foundation\Application;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Facade;
 use PHPUnit_Framework_TestCase;
 use TS\Writer\Provider\Laravel\WriterServiceProvider;
@@ -11,8 +11,8 @@ use TS\Writer\Provider\Laravel\WriterServiceProvider;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class WriterServiceProviderTest extends PHPUnit_Framework_TestCase
 {
@@ -37,22 +37,24 @@ class WriterServiceProviderTest extends PHPUnit_Framework_TestCase
     {
         $this->application->register(new WriterServiceProvider($this->application));
 
-        $this->assertInstanceOf('TS\\Writer\\FileWriterFactory', $this->application['writer']);
+        $this->assertInstanceOf('TS\\Writer\\FileWriterContainer', $this->application['writer']);
     }
 
     public function testFacade()
     {
         $this->application->register(new WriterServiceProvider($this->application));
 
-        $this->application->registerAliasLoader(array(
-            'Writer' => 'TS\\Writer\\Provider\\Laravel\\Facade\\Writer'
-        ));
+        AliasLoader::getInstance(
+            array(
+                'Writer' => 'TS\\Writer\\Provider\\Laravel\\Facade\\Writer'
+            )
+        )->register();
 
         Facade::setFacadeApplication($this->application);
 
         $this->assertSame($this->application, \Writer::getFacadeApplication());
 
-        $this->assertInstanceOf('TS\\Writer\\FileWriterFactory', \Writer::getFacadeRoot());
+        $this->assertInstanceOf('TS\\Writer\\FileWriterContainer', \Writer::getFacadeRoot());
     }
 
     public function testBoot()
@@ -64,7 +66,10 @@ class WriterServiceProviderTest extends PHPUnit_Framework_TestCase
     public function testSymfonyEventDispatcherRegistered()
     {
         $this->application->register(new WriterServiceProvider($this->application));
-        $this->assertInstanceOf('Symfony\\Component\\EventDispatcher\\EventDispatcher', $this->application['symfony.dispatcher']);
+        $this->assertInstanceOf(
+            'Symfony\\Component\\EventDispatcher\\EventDispatcher',
+            $this->application['symfony.dispatcher']
+        );
     }
 
     /**

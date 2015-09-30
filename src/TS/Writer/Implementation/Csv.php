@@ -7,8 +7,8 @@ use TS\Writer\IterableFileWriter;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class Csv extends IterableFileWriter
 {
@@ -132,15 +132,5 @@ class Csv extends IterableFileWriter
         $this->enclosure = $enclosure;
 
         return $this;
-    }
-
-    /**
-     * Returns the types supported by the writer using an indexed array.
-     *
-     * @return array
-     */
-    public function supportedTypes()
-    {
-        return array('csv');
     }
 }

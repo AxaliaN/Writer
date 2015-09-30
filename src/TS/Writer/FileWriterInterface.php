@@ -5,8 +5,8 @@ namespace TS\Writer;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 interface FileWriterInterface extends WriterInterface
 {
@@ -41,7 +41,7 @@ interface FileWriterInterface extends WriterInterface
     /**
      * Sets the mode a file should be accessed with.
      *
-     * @param  int    $mode
+     * @param  int $mode
      * @return static
      */
     public function setFileAccessMode($mode = 0);
@@ -54,19 +54,4 @@ interface FileWriterInterface extends WriterInterface
      * @return static
      */
     public function setTargetFile($filePath, $createDir = false);
-
-    /**
-     * Returns the types supported by the writer using an indexed array.
-     *
-     * @return array
-     */
-    public function supportedTypes();
-
-    /**
-     * Returns whether this writer supports writing a file of the given type.
-     *
-     * @param  string $fileType
-     * @return bool
-     */
-    public function supports($fileType);
 }

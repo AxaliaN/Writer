@@ -8,8 +8,8 @@ use TS\Writer\Implementation\Txt;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class TxtTest extends BaseTest
 {

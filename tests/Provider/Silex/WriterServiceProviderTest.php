@@ -9,8 +9,8 @@ use TS\Writer\Provider\Silex\WriterServiceProvider;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class WriterServiceProviderTest extends PHPUnit_Framework_TestCase
 {
@@ -28,7 +28,7 @@ class WriterServiceProviderTest extends PHPUnit_Framework_TestCase
     {
         $this->application->register(new WriterServiceProvider);
 
-        $this->assertInstanceOf('TS\\Writer\\FileWriterFactory', $this->application['writer']);
+        $this->assertInstanceOf('TS\\Writer\\FileWriterContainer', $this->application['writer']);
     }
 
     public function testBoot()

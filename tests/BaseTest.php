@@ -3,14 +3,14 @@
 namespace TS\Writer\Tests;
 
 use PHPUnit_Framework_TestCase;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use stdClass;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 abstract class BaseTest extends PHPUnit_Framework_TestCase
 {

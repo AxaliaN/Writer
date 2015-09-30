@@ -9,8 +9,8 @@ use TS\Writer\Implementation\Ini;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class IniTest extends BaseTest
 {
@@ -165,5 +165,12 @@ class IniTest extends BaseTest
 
         $this->assertEquals($expected, $this->writer->dumpData());
         $this->assertEquals($expected, file_get_contents($this->tmpDir . 'iniFile.ini'));
+    }
+
+    public function getEmptyFilename()
+    {
+        $this->writer = new Ini($this->dispatcher);
+
+        $this->assertNull($this->writer->getFileName());
     }
 }

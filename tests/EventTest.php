@@ -12,8 +12,8 @@ use TS\Writer\WriterEvents;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class EventTest extends PHPUnit_Framework_TestCase
 {

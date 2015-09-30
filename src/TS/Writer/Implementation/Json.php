@@ -2,16 +2,28 @@
 
 namespace TS\Writer\Implementation;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use TS\Writer\FileWriter;
+use Zend\Json\Json as ZendJson;
 
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class Json extends FileWriter
 {
+    /**
+     * @var bool
+     */
+    private $compabilityMode = false;
+
+    /**
+     * @var int
+     */
+    private $indentation = 4;
+
     /**
      * @var int
      */
@@ -23,17 +35,29 @@ class Json extends FileWriter
     private $prettyPrint = true;
 
     /**
+     * @param EventDispatcherInterface $eventDispatcher
+     */
+    public function __construct(EventDispatcherInterface $eventDispatcher)
+    {
+        $this->compabilityMode = (version_compare(PHP_VERSION, '5.4.0') <= 0);
+
+        parent::__construct($eventDispatcher);
+    }
+
+    /**
      * Returns the options for json_encode, adding JSON_PRETTY_PRINT if pretty printing is enabled.
      *
      * @return int
      */
-    protected function options()
+    private function options()
     {
         $options = $this->options;
 
-        if ($this->prettyPrint === true) {
-            $options |= JSON_PRETTY_PRINT;
+        // @codeCoverageIgnoreStart
+        if (!$this->compabilityMode && $this->prettyPrint) {
+            $options |= 128; // JSON_PRETTY_PRINT
         }
+        // @codeCoverageIgnoreEnd
 
         return $options;
     }
@@ -45,20 +69,46 @@ class Json extends FileWriter
      */
     public function dumpData()
     {
-        return json_encode($this->data, $this->options());
+        $json = json_encode($this->data, $this->options());
+
+        // @codeCoverageIgnoreStart
+        if ($this->compabilityMode && $this->prettyPrint) {
+            $json = ZendJson::prettyPrint(
+                $json,
+                array(
+                    'indent' => str_repeat(' ', $this->indentation)
+                )
+            );
+        }
+        // @codeCoverageIgnoreEnd
+
+        return $json;
+    }
+
+    /**
+     * Sets the number of spaces used for indentation.
+     *
+     * @param  int $indentation
+     * @return $this
+     */
+    public function setIndentation($indentation = 4)
+    {
+        $this->indentation = $indentation;
+
+        return $this;
     }
 
     /**
      * Sets the given $option flag, adding or removing it from the internal flag set.
      *
-     * @param  int    $option
-     * @param  bool   $enable
-     * @return static
+     * @param  int $option
+     * @param  bool $enable
+     * @return $this
      */
     public function setOption($option, $enable = true)
     {
-        if ($option == JSON_PRETTY_PRINT) {
-            $this->prettyPrint = $enable;
+        if (!$this->compabilityMode && $option == 128 /* JSON_PRETTY_PRINT */) {
+            return $this->setPrettyPrint($enable);
         }
 
         if ($enable === true) {
@@ -73,23 +123,13 @@ class Json extends FileWriter
     /**
      * Whether or not to use pretty printing.
      *
-     * @param  bool   $prettyPrint
-     * @return static
+     * @param  bool $prettyPrint
+     * @return $this
      */
     public function setPrettyPrint($prettyPrint = true)
     {
         $this->prettyPrint = $prettyPrint;
 
         return $this;
-    }
-
-    /**
-     * Returns the types supported by the Writer using an indexed array.
-     *
-     * @return array
-     */
-    public function supportedTypes()
-    {
-        return array('json');
     }
 }

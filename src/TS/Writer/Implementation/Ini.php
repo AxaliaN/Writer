@@ -8,8 +8,8 @@ use TS\Writer\FileWriter;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class Ini extends FileWriter
 {
@@ -21,8 +21,8 @@ class Ini extends FileWriter
     /**
      * Encode the data array to a ini compatible string.
      *
-     * @param  mixed            $data
-     * @param  int              $stackLevel
+     * @param  mixed $data
+     * @param  int   $stackLevel
      * @return string
      * @throws DumpingException
      */
@@ -54,8 +54,8 @@ class Ini extends FileWriter
     /**
      * Encode the array to a flat ini string.
      *
-     * @param  array            $data
-     * @param  int              $stackLevel
+     * @param  array $data
+     * @param  int   $stackLevel
      * @return string
      * @throws DumpingException
      */
@@ -83,8 +83,8 @@ class Ini extends FileWriter
     /**
      * Encode the array to sectioned ini string.
      *
-     * @param  array            $data
-     * @param  int              $stackLevel
+     * @param  array $data
+     * @param  int   $stackLevel
      * @return string
      * @throws DumpingException
      */
@@ -94,7 +94,7 @@ class Ini extends FileWriter
 
         if ($stackLevel++ <= 1) {
             foreach ($data as $section => $values) {
-                if (!is_string($section) or !is_array($values)) {
+                if (!is_string($section) || !is_array($values)) {
                     throw new DumpingException(
                         "Sectioned ini data must have the following \$data format:\n
                         \$data = array(/* string */ \$section => array(/* string */ \$key => \$value, ...))."
@@ -127,7 +127,7 @@ class Ini extends FileWriter
     /**
      * Sets whether to create sectioned ini files or not.
      *
-     * @param  bool   $createSections
+     * @param  bool $createSections
      * @return static
      */
     public function createSections($createSections = true)
@@ -145,15 +145,5 @@ class Ini extends FileWriter
     public function dumpData()
     {
         return $this->encodeData($this->data);
-    }
-
-    /**
-     * Returns the types supported by the writer using an indexed array.
-     *
-     * @return array
-     */
-    public function supportedTypes()
-    {
-        return array('ini');
     }
 }

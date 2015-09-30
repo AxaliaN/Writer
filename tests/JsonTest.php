@@ -8,8 +8,8 @@ use TS\Writer\Implementation\Json;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class JsonTest extends BaseTest
 {
@@ -49,7 +49,7 @@ class JsonTest extends BaseTest
     public function testJsonAccessors()
     {
         $this->writer->setLineEnding("\r\n");
-        $this->writer->setOption(JSON_PRETTY_PRINT);
+        $this->writer->setIndentation(2);
         $this->writer->setPrettyPrint(false);
 
         $reflection = new ReflectionObject($this->writer);
@@ -64,21 +64,33 @@ class JsonTest extends BaseTest
 
         $this->assertFalse($prettyPrint->getValue($this->writer));
 
+        $indentation = $reflection->getProperty('indentation');
+        $indentation->setAccessible(true);
+
+        $this->assertSame(2, $indentation->getValue($this->writer));
+
         $options = $reflection->getMethod('options');
         $options->setAccessible(true);
 
-        $this->assertSame(JSON_PRETTY_PRINT, $options->invoke($this->writer));
+        $this->writer->setOption(128);
+        $this->assertSame(128, $options->invoke($this->writer));
 
-        $this->writer->setOption(JSON_PRETTY_PRINT, false);
+        $this->writer->setOption(128, false);
+        $this->assertSame(0, $options->invoke($this->writer));
 
+        $this->writer->setOption(JSON_HEX_TAG);
+        $this->assertSame(JSON_HEX_TAG, $options->invoke($this->writer));
+
+        $this->writer->setOption(JSON_HEX_TAG, false);
         $this->assertSame(0, $options->invoke($this->writer));
     }
 
     public function testWriteAll()
     {
+        $this->writer->setPrettyPrint(false);
         $this->assertTrue($this->writer->writeAll());
 
-        $expected = json_encode($this->getData(), JSON_PRETTY_PRINT);
+        $expected = json_encode($this->getData());
 
         $this->assertSame($expected, $this->writer->dumpData());
         $this->assertSame($expected, file_get_contents($this->tmpDir . 'jsonFile.json'));

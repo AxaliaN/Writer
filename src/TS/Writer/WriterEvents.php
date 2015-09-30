@@ -5,14 +5,13 @@ namespace TS\Writer;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 abstract class WriterEvents
 {
     /**
      * Dispatched before the writer tries to write.
-     *
      * Arguments:
      * - Writer instance
      *
@@ -22,7 +21,6 @@ abstract class WriterEvents
 
     /**
      * Dispatched when the writer is instantiated.
-     *
      * Arguments:
      * - Writer instance
      *
@@ -32,7 +30,6 @@ abstract class WriterEvents
 
     /**
      * Dispatched when a line write occurs.
-     *
      * Arguments:
      * - Writer instance
      * - Data array
@@ -43,7 +40,6 @@ abstract class WriterEvents
 
     /**
      * Dispatched when a writer's writeAll() method is called.
-     *
      * Arguments:
      * - Writer instance
      *
@@ -53,7 +49,6 @@ abstract class WriterEvents
 
     /**
      * Dispatched when the writer has finished writing.
-     *
      * Arguments:
      * - Writer instance
      *

@@ -7,8 +7,8 @@ use TS\Writer\IterableFileWriter;
 /**
  * @package   Writer
  * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
+ * @copyright 2014
+ * @version   1.2
  */
 class Txt extends IterableFileWriter
 {
@@ -37,15 +37,5 @@ class Txt extends IterableFileWriter
         }
 
         return $dump;
-    }
-
-    /**
-     * Returns the types supported by the Writer using an indexed array.
-     *
-     * @return array
-     */
-    public function supportedTypes()
-    {
-        return array('txt');
     }
 }
